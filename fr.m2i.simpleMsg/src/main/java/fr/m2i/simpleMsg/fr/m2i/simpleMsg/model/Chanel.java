@@ -4,6 +4,7 @@
  */
 package fr.m2i.simpleMsg.fr.m2i.simpleMsg.model;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,10 @@ public class Chanel {
       @Column(name="description", length=200, nullable=false )
     private String description;
 
+    @OneToMany(targetEntity=Message.class, mappedBy="chanel")
+    private List <Message> messages;
+    
+    
     public Chanel() {
     }
 
@@ -63,10 +68,20 @@ public class Chanel {
         this.description = description;
     }
 
+    public List <Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List <Message> messages) {
+        this.messages = messages;
+    }
+
     @Override
     public String toString() {
-        return "Chanel{" + "id=" + id + ", name=" + name + ", description=" + description + '}';
+        return "Chanel{" + "id=" + id + ", name=" + name + ", description=" + description + ", messages=" + messages + '}';
     }
+
+ 
     
       
 }
