@@ -11,6 +11,7 @@ import java.util.List;
  *
  * @author RAISA
  */
+
 public interface IChanelService {
     
       public List <Chanel> findAllChanels();

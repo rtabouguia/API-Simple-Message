@@ -4,6 +4,9 @@
  */
 package fr.m2i.simpleMsg.dto;
 
+import fr.m2i.simpleMsg.model.Chanel;
+import java.util.Date;
+
 /**
  *
  * @author RAISA
@@ -11,18 +14,24 @@ package fr.m2i.simpleMsg.dto;
 public class MessageDTO {
 
     private Long id;
-    private String name;
-    private String description;
+    private String sender;
+    private String content;
+    private Date date;
+    private ChanelDTO chanelDTO;
    
     
     public MessageDTO() {
     }
 
-    public MessageDTO(Long id, String name, String description) {
+    public MessageDTO(Long id, String sender, String content, Date date, ChanelDTO chanelDTO) {
         this.id = id;
-        this.name = name;
-        this.description = description;
+        this.sender = sender;
+        this.content = content;
+        this.date = date;
+        this.chanelDTO = chanelDTO;
     }
+
+   
 
     public Long getId() {
         return id;
@@ -32,20 +41,39 @@ public class MessageDTO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+   public String getSender() {
+        return sender;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(String content) {
+        this.content = content;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public ChanelDTO getChanelDTO() {
+        return chanelDTO;
+    }
+
+    public void setChanelDTO(ChanelDTO chanelDTO) {
+        this.chanelDTO = chanelDTO;
+    }
+
+    
+
     
 }

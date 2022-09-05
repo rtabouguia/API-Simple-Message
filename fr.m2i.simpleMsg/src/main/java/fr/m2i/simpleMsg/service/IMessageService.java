@@ -4,6 +4,7 @@
  */
 package fr.m2i.simpleMsg.service;
 
+import fr.m2i.simpleMsg.model.Chanel;
 import fr.m2i.simpleMsg.model.Message;
 import java.util.List;
 
@@ -14,15 +15,15 @@ import java.util.List;
 public interface IMessageService {
     
     
-    public List <Message> findAllMessagesByChanel();
+    List <Message> findAllMessagesByChanel(Long id, Chanel chanel);
     
-    public Message findMessageById();
+    Message findMessageById(Long id);
     
-    public Message createMessage();
+    Message createMessage(Message message);
     
-    public Message updateMessage();
+    Message updateMessage(Long id, Message content);
     
-    public void deleteMessage();
+    void deleteMessage(Long id);
     
     
 }

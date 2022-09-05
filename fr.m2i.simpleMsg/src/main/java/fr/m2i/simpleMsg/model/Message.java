@@ -38,11 +38,12 @@ public class Message {
     public Message() {
     }
 
-    public Message(Long id, String sender, String content, Date date) {
+    public Message(Long id, String sender, String content, Date date, Chanel chanel) {
         this.id = id;
         this.sender = sender;
         this.content = content;
         this.date = date;
+        this.chanel =chanel;
     }
 
     public Long getId() {
