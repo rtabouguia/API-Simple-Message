@@ -16,9 +16,10 @@ public interface IChanelService {
     
       public List <Chanel> findAllChanels();
     
-      public Chanel findChanelById();
+      public Chanel findChanelById(Long id);
       
-      public Chanel updateChanel();
+      public Chanel updateChanel(Long id, Chanel content);
+       public Chanel createChanel(Chanel chanel);
       
-      public void deleteChanel();
+      public void deleteChanel(Long id);
 }

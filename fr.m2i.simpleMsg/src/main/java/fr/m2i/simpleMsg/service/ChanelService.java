@@ -1,8 +1,12 @@
 package fr.m2i.simpleMsg.service;
 
+import fr.m2i.simpleMsg.dto.ChanelMapper;
+import fr.m2i.simpleMsg.exception.NotFoundException;
 import fr.m2i.simpleMsg.model.Chanel;
 import fr.m2i.simpleMsg.repository.ChanelRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,25 +25,39 @@ public class ChanelService  implements IChanelService{
         this.repo = repo;
     }
     
-    
+    @Override
     public List <Chanel> findAllChanels(){
-        return null;
+        return repo.findAll();
     }
     
-    public Chanel findChanelById(){
-          return null;
+    @Override
+    public Chanel findChanelById(Long id){
+        Chanel founded =repo.findById(id).orElseThrow(
+                () -> new NotFoundException("Chanel with id: " + id + " was not found"));
+        return founded;
     }
     
-    public Chanel updateChanel(){
-          return null;
+    @Override
+    @Transactional
+    public Chanel updateChanel(Long id, Chanel content){
+        Chanel chanelToUpdate = findChanelById(id);
+        chanelToUpdate = ChanelMapper.copy(chanelToUpdate, content);
+          return repo.save(chanelToUpdate);
     }
     
-    public void deleteChanel(){
-        
+    @Override
+    @Transactional
+    public void deleteChanel(Long id){
+        Chanel chanel = findChanelById(id);
+        repo.delete(chanel);
     }
     
-    public Chanel createChanel(){
-      return null;
+    @Override
+    @Transactional
+    public Chanel createChanel(Chanel chanel){
+      return repo.save(chanel);
 }
+    
+ 
     
 }

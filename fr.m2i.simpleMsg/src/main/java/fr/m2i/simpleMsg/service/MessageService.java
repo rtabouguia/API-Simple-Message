@@ -6,26 +6,33 @@ import fr.m2i.simpleMsg.model.Chanel;
 import fr.m2i.simpleMsg.model.Message;
 import fr.m2i.simpleMsg.repository.MessageRepository;
 import java.util.List;
+import javax.transaction.Transactional;
+import javax.persistence.EntityManager;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author RAISA
  */
+@Service
 public class MessageService implements IMessageService{
     
     private MessageRepository repo;
     private Chanel chanel;
-
+  
+    
     public MessageService(MessageRepository repo) {
         this.repo = repo;
+     
     }
-    
+   
     
        @Override
+      @Query("select u from Message u INNER JOIN u.chanel uc where uc.chanel = :id") 
        public List <Message> findAllMessagesByChanel(Long id, Chanel chanel){
-           
-        return null;
-    }
+                return repo.findAll();
+             }
     
        @Override
     public Message findMessageById(Long id) {
@@ -35,11 +42,13 @@ public class MessageService implements IMessageService{
     }
     
        @Override
+       @Transactional
     public Message createMessage(Message message){
         return repo.save(message);
     }
     
        @Override
+       @Transactional
     public Message updateMessage(Long id, Message content){
         Message msgToUpdate = findMessageById(id);
         msgToUpdate = MessageMapper.copy(msgToUpdate, content);
@@ -48,6 +57,7 @@ public class MessageService implements IMessageService{
     }
     
        @Override
+       @Transactional
     public void deleteMessage(Long id){
         Message msgToDelete =findMessageById(id);
         repo.delete(msgToDelete);
