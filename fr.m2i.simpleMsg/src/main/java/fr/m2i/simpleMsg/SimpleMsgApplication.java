@@ -1,13 +1,13 @@
-package fr.m2i.simpleMsg.fr.m2i.simpleMsg;
+package fr.m2i.simpleMsg;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class SimpleMsgApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(SimpleMsgApplication.class, args);
 	}
 
 }

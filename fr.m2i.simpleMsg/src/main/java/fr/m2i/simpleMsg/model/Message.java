@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fr.m2i.simpleMsg.fr.m2i.simpleMsg.model;
+package fr.m2i.simpleMsg.model;
 
 import java.util.Date;
 import javax.persistence.*;
@@ -25,7 +25,7 @@ public class Message {
      @Column(name="sender", length=100, nullable=false )
     private String sender;
     
-      @Column(name="content", length=200, nullable=false )
+      @Column(name="content", columnDefinition="TEXT    ", nullable=false )
     private String content;
      
     @Column(name="date", length=200, nullable=false )
@@ -89,7 +89,5 @@ public class Message {
     public String toString() {
         return "Message{" + "id=" + id + ", sender=" + sender + ", content=" + content + ", date=" + date + '}';
     }
-    
-    
     
 }

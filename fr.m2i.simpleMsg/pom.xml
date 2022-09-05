@@ -11,7 +11,7 @@
     <groupId>fr.m2i.simpleMsg</groupId>
     <artifactId>fr.m2i.simpleMsg</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fr.m2i.simpleMsg</name>
+    <name>simpleMsg</name>
     <description>Demo project for Spring Boot</description>
     <properties>
          <mapstruct.version>1.3.1.Final</mapstruct.version>

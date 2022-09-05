@@ -2,43 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fr.m2i.simpleMsg.fr.m2i.simpleMsg.model;
+package fr.m2i.simpleMsg.dto;
 
+import fr.m2i.simpleMsg.model.Message;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.*;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
 
 /**
  *
  * @author RAISA
  */
+public class ChanelDTO {
 
-@Entity
-@Table(name="chanels")
-public class Chanel {
-    
-    @Id
-    @Column(name="id_chanel", nullable=false )
-    @GeneratedValue( strategy=GenerationType.IDENTITY )
     private Long id;
-    
-     @Column(name="name_chanel", length=100, nullable=false )
-    private String name;
-    
-      @Column(name="description", length=200, nullable=false )
+     private String name;
     private String description;
-
-    @OneToMany(targetEntity=Message.class, mappedBy="chanel")
     private List <Message> messages;
     
     
-    public Chanel() {
+    public ChanelDTO() {
     }
 
-    public Chanel(Long id, String name, String description) {
+    public ChanelDTO(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -76,12 +60,4 @@ public class Chanel {
         this.messages = messages;
     }
 
-    @Override
-    public String toString() {
-        return "Chanel{" + "id=" + id + ", name=" + name + ", description=" + description + ", messages=" + messages + '}';
-    }
-
- 
-    
-      
 }
