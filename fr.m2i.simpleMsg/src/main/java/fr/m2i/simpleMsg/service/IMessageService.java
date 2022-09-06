@@ -4,9 +4,9 @@
  */
 package fr.m2i.simpleMsg.service;
 
-import fr.m2i.simpleMsg.model.Chanel;
 import fr.m2i.simpleMsg.model.Message;
 import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IMessageService {
     
-    
+   // @Query("select u from Message u INNER JOIN u.chanel uc where id = :id") 
     List <Message> findAllMessagesByChanel(Long id);
     
     Message findMessageById(Long id);

@@ -4,6 +4,7 @@
  */
 package fr.m2i.simpleMsg.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -15,18 +16,18 @@ public class MessageDTO {
     private Long id;
     private String sender;
     private String content;
-    private Date date;
+    private LocalDateTime date;
     private ChanelDTO chanelDTO;
    
     
     public MessageDTO() {
     }
 
-    public MessageDTO(Long id, String sender, String content, Date date, ChanelDTO chanelDTO) {
+    public MessageDTO(Long id, String sender, String content, ChanelDTO chanelDTO) {
         this.id = id;
         this.sender = sender;
         this.content = content;
-        this.date = date;
+        this.date = LocalDateTime.now();
         this.chanelDTO = chanelDTO;
     }
 
@@ -56,11 +57,11 @@ public class MessageDTO {
         this.content = content;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

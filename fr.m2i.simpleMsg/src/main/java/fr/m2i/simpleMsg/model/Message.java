@@ -4,6 +4,9 @@
  */
 package fr.m2i.simpleMsg.model;
 
+import java.security.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
@@ -28,8 +31,8 @@ public class Message {
     private String content;
      
     @Column(name="date", length=200, nullable=false )
-    private Date date;
-    
+    private LocalDateTime date;
+        
     @JoinColumn(name="id_chanel", nullable=false )
     @ManyToOne
     private Chanel chanel;
@@ -37,12 +40,12 @@ public class Message {
     public Message() {
     }
 
-    public Message(Long id, String sender, String content, Date date, Chanel chanel) {
+    public Message(Long id, String sender, String content, Chanel chanel) {
         this.id = id;
         this.sender = sender;
         this.content = content;
-        this.date = date;
-        this.chanel =chanel;
+       date = LocalDateTime.now();
+          this.chanel =chanel;
     }
 
     public Long getId() {
@@ -69,11 +72,11 @@ public class Message {
         this.content = content;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

@@ -10,6 +10,7 @@ import fr.m2i.simpleMsg.exception.NotFoundException;
 import fr.m2i.simpleMsg.model.Message;
 import fr.m2i.simpleMsg.response.ErrorResponseEntity;
 import fr.m2i.simpleMsg.service.IMessageService;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,9 @@ public class MessageController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<Object> createMessage(@RequestBody MessageDTO dto){
+        LocalDateTime currentDate = LocalDateTime.now();
+        dto.setDate(currentDate);
+        
         try {
             Message toCreate = MessageMapper.buildMessage(dto);
             Message created = messageService.createMessage(toCreate);

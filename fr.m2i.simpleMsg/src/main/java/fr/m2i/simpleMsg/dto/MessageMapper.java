@@ -30,7 +30,6 @@ public class MessageMapper {
                 message.getId(),
                 message.getSender(),
                 message.getContent(),
-                message.getDate(),
                 chanelDTO        
         );    
     }
@@ -52,8 +51,7 @@ public class MessageMapper {
         dto.getId(),
         dto.getSender(),
        dto.getContent(),
-        dto.getDate(),
-        chanel
+       chanel
                );
     }
     

@@ -2,13 +2,12 @@ package fr.m2i.simpleMsg.service;
 
 import fr.m2i.simpleMsg.dto.MessageMapper;
 import fr.m2i.simpleMsg.exception.NotFoundException;
-import fr.m2i.simpleMsg.model.Chanel;
 import fr.m2i.simpleMsg.model.Message;
 import fr.m2i.simpleMsg.repository.MessageRepository;
 import java.util.List;
 import javax.transaction.Transactional;
-import javax.persistence.EntityManager;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,8 +27,8 @@ public class MessageService implements IMessageService{
    
     
        @Override
-      @Query("select u from Message u INNER JOIN u.chanel uc where uc.chanel = :id") 
-       public List <Message> findAllMessagesByChanel(Long id){
+      @Query("select u from Message u where  u.chanel= :id") 
+       public List <Message> findAllMessagesByChanel(@Param("id") Long id){
                 return repo.findAll();
              }
     
