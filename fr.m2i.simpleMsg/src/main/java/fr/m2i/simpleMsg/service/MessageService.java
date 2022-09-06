@@ -18,9 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessageService implements IMessageService{
     
-    private MessageRepository repo;
-    private Chanel chanel;
-  
+    private final MessageRepository repo;
+   
     
     public MessageService(MessageRepository repo) {
         this.repo = repo;
@@ -30,7 +29,7 @@ public class MessageService implements IMessageService{
     
        @Override
       @Query("select u from Message u INNER JOIN u.chanel uc where uc.chanel = :id") 
-       public List <Message> findAllMessagesByChanel(Long id, Chanel chanel){
+       public List <Message> findAllMessagesByChanel(Long id){
                 return repo.findAll();
              }
     

@@ -15,7 +15,7 @@ import java.util.List;
 public interface IMessageService {
     
     
-    List <Message> findAllMessagesByChanel(Long id, Chanel chanel);
+    List <Message> findAllMessagesByChanel(Long id);
     
     Message findMessageById(Long id);
     

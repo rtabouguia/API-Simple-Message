@@ -4,7 +4,6 @@
  */
 package fr.m2i.simpleMsg.dto;
 
-import fr.m2i.simpleMsg.model.Chanel;
 import java.util.Date;
 
 /**

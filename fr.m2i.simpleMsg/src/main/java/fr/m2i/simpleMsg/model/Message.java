@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-
 /**
  *
  * @author RAISA
