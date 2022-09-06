@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface IMessageService {
     
-   // @Query("select u from Message u INNER JOIN u.chanel uc where id = :id") 
+   @Query(value="select u from Message u where  u.chanel= :id") 
     List <Message> findAllMessagesByChanel(Long id);
     
     Message findMessageById(Long id);

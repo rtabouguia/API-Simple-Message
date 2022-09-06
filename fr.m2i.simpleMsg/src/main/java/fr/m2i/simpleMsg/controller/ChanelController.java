@@ -47,6 +47,7 @@ public class ChanelController {
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
+    //Find chanel by id
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getChanelById(@PathVariable("id") String id) {
         try {
@@ -65,6 +66,7 @@ public class ChanelController {
         }
     }
 
+    //Create a new chanel
     @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -83,6 +85,7 @@ public class ChanelController {
         }
     }
 
+    //Update chanel informations like name or description 
     @PutMapping(
             value = "/{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -108,13 +111,15 @@ public class ChanelController {
         }
     }
 
+     
+     //Remove a chanel with associated messages
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deleteChanel(@PathVariable("id") String id) {
         try {
             Long chanelId = Long.parseLong(id);
             chanelService.deleteChanel(chanelId);
 
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            return new ResponseEntity<>("The Message have been successfully removed", HttpStatus.OK);
 
         } catch (NumberFormatException ne) {
             return ErrorResponseEntity.build("The parameter 'id' is not valid", 400, "/v1/chanels/" + id, HttpStatus.BAD_REQUEST);

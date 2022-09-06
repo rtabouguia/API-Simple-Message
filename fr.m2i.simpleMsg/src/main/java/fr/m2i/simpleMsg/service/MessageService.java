@@ -4,9 +4,11 @@ import fr.m2i.simpleMsg.dto.MessageMapper;
 import fr.m2i.simpleMsg.exception.NotFoundException;
 import fr.m2i.simpleMsg.model.Message;
 import fr.m2i.simpleMsg.repository.MessageRepository;
+import fr.m2i.simpleMsg.utils.SessionHelper;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class MessageService implements IMessageService{
     
     private final MessageRepository repo;
-   
+  
     
     public MessageService(MessageRepository repo) {
         this.repo = repo;
@@ -26,10 +28,11 @@ public class MessageService implements IMessageService{
     }
    
     
-       @Override
-      @Query("select u from Message u where  u.chanel= :id") 
-       public List <Message> findAllMessagesByChanel(@Param("id") Long id){
-                return repo.findAll();
+      @Override
+       public List <Message> findAllMessagesByChanel(Long id){
+   
+                return repo.getAllMessagesByChannel(id);
+                
              }
     
        @Override
@@ -42,7 +45,7 @@ public class MessageService implements IMessageService{
        @Override
        @Transactional
     public Message createMessage(Message message){
-        return repo.save(message);
+            return repo.save(message);
     }
     
        @Override
@@ -50,7 +53,7 @@ public class MessageService implements IMessageService{
     public Message updateMessage(Long id, Message content){
         Message msgToUpdate = findMessageById(id);
         msgToUpdate = MessageMapper.copy(msgToUpdate, content);
-                
+                     
         return repo.save(msgToUpdate);
     }
     

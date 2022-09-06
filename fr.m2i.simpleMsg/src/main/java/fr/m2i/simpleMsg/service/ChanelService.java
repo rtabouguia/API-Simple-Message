@@ -29,6 +29,7 @@ public class ChanelService  implements IChanelService{
         return repo.findAll();
     }
     
+         
     @Override
     public Chanel findChanelById(Long id){
         Chanel founded =repo.findById(id).orElseThrow(

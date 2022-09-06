@@ -4,11 +4,15 @@
  */
 package fr.m2i.simpleMsg.controller;
 
+import fr.m2i.simpleMsg.dto.ChanelDTO;
+import fr.m2i.simpleMsg.dto.ChanelMapper;
 import fr.m2i.simpleMsg.dto.MessageDTO;
 import fr.m2i.simpleMsg.dto.MessageMapper;
 import fr.m2i.simpleMsg.exception.NotFoundException;
+import fr.m2i.simpleMsg.model.Chanel;
 import fr.m2i.simpleMsg.model.Message;
 import fr.m2i.simpleMsg.response.ErrorResponseEntity;
+import fr.m2i.simpleMsg.service.IChanelService;
 import fr.m2i.simpleMsg.service.IMessageService;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,6 +37,7 @@ public class MessageController {
     @Autowired
     public MessageController(IMessageService messageService) {
         this.messageService = messageService;
+       
     }
     
     //Find all the messages posted on a chanel
@@ -89,13 +94,11 @@ public class MessageController {
     public ResponseEntity<Object> createMessage(@RequestBody MessageDTO dto){
         LocalDateTime currentDate = LocalDateTime.now();
         dto.setDate(currentDate);
-        
         try {
+                   
             Message toCreate = MessageMapper.buildMessage(dto);
             Message created = messageService.createMessage(toCreate);
-            MessageDTO createdDTO = MessageMapper.buildMessageDTO(created);
-
-            return ResponseEntity.status(HttpStatus.OK).body(createdDTO);
+                    return ResponseEntity.status(HttpStatus.OK).body(created);
 
         } catch (Exception e) {
             return ErrorResponseEntity.build("An error occured", 500, "/v1/messages", HttpStatus.INTERNAL_SERVER_ERROR);

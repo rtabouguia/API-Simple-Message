@@ -31,9 +31,9 @@ public class Chanel {
       @Column(name="description", length=200, nullable=false )
     private String description;
 
-//    @OneToMany(targetEntity=Message.class, mappedBy="chanel")
-//    private List <Message> messages;
-//    
+    @OneToMany(targetEntity=Message.class, mappedBy="chanel", cascade = CascadeType.REMOVE)
+    private List <Message> messages;
+    
     
     public Chanel() {
     }
@@ -68,13 +68,13 @@ public class Chanel {
         this.description = description;
     }
 
-//    public List <Message> getMessages() {
-//        return messages;
-//    }
-//
-//    public void setMessages(List <Message> messages) {
-//        this.messages = messages;
-//    }
+    public List <Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List <Message> messages) {
+        this.messages = messages;
+    }
 
     @Override
     public String toString() {

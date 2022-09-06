@@ -16,7 +16,7 @@ public class ChanelDTO {
     private Long id;
      private String name;
     private String description;
-    //private List <Message> messages;
+    private List <Message> messages;
     
     
     public ChanelDTO() {
@@ -52,12 +52,12 @@ public class ChanelDTO {
         this.description = description;
     }
 
-//    public List <Message> getMessages() {
-//        return messages;
-//    }
-//
-//    public void setMessages(List <Message> messages) {
-//        this.messages = messages;
-//    }
+    public List <Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List <Message> messages) {
+        this.messages = messages;
+    }
 
 }
