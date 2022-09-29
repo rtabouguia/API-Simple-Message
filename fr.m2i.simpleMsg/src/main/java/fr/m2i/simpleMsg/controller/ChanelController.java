@@ -11,6 +11,7 @@ import fr.m2i.simpleMsg.exception.NotFoundException;
 import fr.m2i.simpleMsg.model.Chanel;
 import fr.m2i.simpleMsg.response.ErrorResponseEntity;
 import fr.m2i.simpleMsg.service.IChanelService;
+import io.swagger.annotations.ApiOperation;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/v1/chanels")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ChanelController {
 
     private final IChanelService chanelService;
@@ -33,7 +35,10 @@ public class ChanelController {
         this.chanelService = chanelService;
     }
     
+    //Get all Chanels
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+        @ApiOperation(value ="Returns the list of all chanels", nickname ="Get all chanels", response = ChanelDTO.class)
+
     public ResponseEntity<Object> getAllChanel() {
 
         List<Chanel> chanels = chanelService.findAllChanels();
@@ -49,6 +54,7 @@ public class ChanelController {
 
     //Find chanel by id
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Return a chanel", nickname = "Get a chanel by id", response = ChanelDTO.class)
     public ResponseEntity<Object> getChanelById(@PathVariable("id") String id) {
         try {
             Long chanelId = Long.parseLong(id);
@@ -71,6 +77,7 @@ public class ChanelController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
+        @ApiOperation(value = "Create a chanel", nickname = "Create a chanel", response = ChanelDTO.class)
     public ResponseEntity<Object> createChanel(@RequestBody ChanelDTO dto) {
         try {
             Chanel toCreate = ChanelMapper.buildChanel(dto);
@@ -91,6 +98,7 @@ public class ChanelController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
+    @ApiOperation(value = "update a chanel", nickname = "update a chanel by id", response = ChanelDTO.class)
      public ResponseEntity<Object> updateChanel(@PathVariable("id") String id,
             @RequestBody ChanelDTO dto) {
         
@@ -114,6 +122,7 @@ public class ChanelController {
      
      //Remove a chanel with associated messages
     @DeleteMapping(value = "/{id}")
+    @ApiOperation(value = "Delete a chanel", nickname = "Delete a chanel using id", code = 204)
     public ResponseEntity<Object> deleteChanel(@PathVariable("id") String id) {
         try {
             Long chanelId = Long.parseLong(id);

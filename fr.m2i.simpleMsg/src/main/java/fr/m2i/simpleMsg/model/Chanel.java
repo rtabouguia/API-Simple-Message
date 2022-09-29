@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import lombok.*;
 
 
 /**
@@ -18,11 +19,13 @@ import javax.persistence.GenerationType;
 
 @Entity
 @Table(name="chanels")
+@Data
 public class Chanel {
     
     @Id
     @Column(name="id_chanel", nullable=false )
     @GeneratedValue( strategy=GenerationType.IDENTITY )
+    @Getter
     private Long id;
     
      @Column(name="name_chanel", length=100, nullable=false )

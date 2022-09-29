@@ -4,10 +4,8 @@
  */
 package fr.m2i.simpleMsg.model;
 
-import java.security.Timestamp;
-import java.text.SimpleDateFormat;
+
 import java.time.LocalDateTime;
-import java.util.Date;
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

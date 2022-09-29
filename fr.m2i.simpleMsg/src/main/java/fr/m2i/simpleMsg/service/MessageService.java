@@ -4,12 +4,8 @@ import fr.m2i.simpleMsg.dto.MessageMapper;
 import fr.m2i.simpleMsg.exception.NotFoundException;
 import fr.m2i.simpleMsg.model.Message;
 import fr.m2i.simpleMsg.repository.MessageRepository;
-import fr.m2i.simpleMsg.utils.SessionHelper;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 /**
@@ -30,8 +26,7 @@ public class MessageService implements IMessageService{
     
       @Override
        public List <Message> findAllMessagesByChanel(Long id){
-   
-                return repo.getAllMessagesByChannel(id);
+                   return repo.getAllMessagesByChannel(id);
                 
              }
     

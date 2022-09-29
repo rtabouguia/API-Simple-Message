@@ -11,6 +11,7 @@ import java.util.List;
  *
  * @author RAISA
  */
+
 public class ChanelDTO {
 
     private Long id;

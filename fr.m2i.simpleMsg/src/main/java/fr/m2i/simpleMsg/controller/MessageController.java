@@ -4,16 +4,13 @@
  */
 package fr.m2i.simpleMsg.controller;
 
-import fr.m2i.simpleMsg.dto.ChanelDTO;
-import fr.m2i.simpleMsg.dto.ChanelMapper;
 import fr.m2i.simpleMsg.dto.MessageDTO;
 import fr.m2i.simpleMsg.dto.MessageMapper;
 import fr.m2i.simpleMsg.exception.NotFoundException;
-import fr.m2i.simpleMsg.model.Chanel;
 import fr.m2i.simpleMsg.model.Message;
 import fr.m2i.simpleMsg.response.ErrorResponseEntity;
-import fr.m2i.simpleMsg.service.IChanelService;
 import fr.m2i.simpleMsg.service.IMessageService;
+import io.swagger.annotations.ApiOperation;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +24,11 @@ import org.springframework.web.bind.annotation.*;
 /**
  *
  * @author RAISA
+ * EndPoints de l'API pour la gestion des messages
  */
 @RestController
 @RequestMapping("/v1/messages")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MessageController {
     
     private final IMessageService messageService;
@@ -42,6 +41,7 @@ public class MessageController {
     
     //Find all the messages posted on a chanel
     @GetMapping(value="chanel/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Return all messages by chanel", nickname = "Return all messages by chanel", response = MessageDTO.class)
     public ResponseEntity<Object> getAllMessagesByCanal(@PathVariable("id") String id) {
         
         try{
@@ -69,6 +69,7 @@ public class MessageController {
     
     //Find a message from id
      @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+   @ApiOperation(value = "Return message by id", nickname = "Return message by id", response = MessageDTO.class)
     public ResponseEntity<Object> getMessageById(@PathVariable("id") String id) {
         try {
             Long customerId = Long.parseLong(id);
@@ -91,6 +92,7 @@ public class MessageController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
+    @ApiOperation(value = "Create message", nickname = "Create message", response = MessageDTO.class)
     public ResponseEntity<Object> createMessage(@RequestBody MessageDTO dto){
         LocalDateTime currentDate = LocalDateTime.now();
         dto.setDate(currentDate);
@@ -108,6 +110,7 @@ public class MessageController {
 
     //delete a message 
      @DeleteMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+     @ApiOperation(value = "Delete message by id", nickname = "Delete message by id", code = 204)
      public ResponseEntity<Object> removeMessage(@PathVariable("id") String id){
            
          try{
@@ -130,6 +133,7 @@ public class MessageController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
+       @ApiOperation(value = "update message by id", nickname = "update message by id", response = MessageDTO.class)
     public ResponseEntity<Object> updateMessage(@PathVariable("id") String id,
             @RequestBody MessageDTO dto) {
         try {

@@ -10,6 +10,7 @@ import fr.m2i.simpleMsg.model.Chanel;
  *
  * @author RAISA
  */
+
 public class ChanelMapper {
     
     public static ChanelDTO buildChanelDTO(Chanel chanel){
